@@ -11,7 +11,7 @@ import chess
 # Loading the puzzles from the database and choosing one and random
 ########################################################################################################################
 puzzles = []
-PUZZLES_LEN = 100000  # Number of puzzles to choose from
+PUZZLES_LEN = 3000000  # Number of puzzles to choose from
 filename = "lichess_db_puzzle.csv"
 
 with open(filename, 'r') as data:

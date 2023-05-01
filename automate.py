@@ -11,7 +11,10 @@ import time
 from instagrapi.exceptions import LoginRequired
 import logging
 
+
 DELAY = 300  # Seconds between posts
+HASHTAGS = "#Chess #ChessGame #ChessBoard #ChessPlayer #ChessMaster #ChessTournament #ChessPost #ChessMemes " \
+           "#Grandmaster #ChessLife #PlayingChess #BoardGames #Puzzle #ChessTactics #ChessPuzzle #ChessPuzzles"
 
 ########################################################################################################################
 # Logging into instagram session
@@ -59,7 +62,7 @@ if not login_via_pw and not login_via_session:
 # Loading the puzzles from the database and choosing one and random
 ########################################################################################################################
 puzzles = []
-PUZZLES_LEN = 100000  # Number of puzzles to choose from
+PUZZLES_LEN = 3000000  # Number of puzzles to choose from
 filename = "lichess_db_puzzle.csv"
 
 with open(filename, 'r') as data:
@@ -123,9 +126,10 @@ while True:
     ####################################################################################################################
     # Posting the puzzle
     ####################################################################################################################
-    caption = 'White to play and win!'
+    caption = 'White to play and win!\n'
     if not whites_move:
-        caption = 'Black to play and win!'
+        caption = 'Black to play and win!\n'
+    caption += 'Comment the solution once you find it!\n\n' + HASHTAGS
     cl.photo_upload("insta_post.jpg", caption)
     print("Puzzle posted to instagram")
 

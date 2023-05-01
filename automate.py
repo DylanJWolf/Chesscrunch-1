@@ -1,11 +1,17 @@
+########################################################################################################################
+# Randomly chooses a puzzle from the Lichess puzzles database
+# Creates an image of the puzzle and posts it to Instagram
+########################################################################################################################
 from instagrapi import Client
 import csv
 import random
-from PIL import Image, ImageDraw
+from PIL import Image
 import chess
 import time
 from instagrapi.exceptions import LoginRequired
 import logging
+
+DELAY = 300  # Seconds between posts
 
 ########################################################################################################################
 # Logging into instagram session
@@ -60,7 +66,7 @@ with open(filename, 'r') as data:
     print("loading puzzles")
     for line in csv.reader(data):
         if len(puzzles) >= PUZZLES_LEN:
-            break;
+            break
         puzzles.append(line)
     print(PUZZLES_LEN, "puzzles loaded")
 
@@ -76,10 +82,12 @@ while True:
     whites_move = 'w' in fen
 
     ####################################################################################################################
-    # Adding the pieces to the image
+    # Creating the board image
     ####################################################################################################################
     img_size = 1000  # resolution of the image
-    board_img = Image.open("chess_board.png").convert("RGBA")
+    board_img = Image.open("Boards/chess_board_white_perspective.png").convert("RGBA")
+    if not whites_move:
+        board_img = Image.open("Boards/chess_board_black_perspective.png").convert("RGBA")
     piece_image = Image.open("Images/blackKing.png").convert("RGBA")
     square_size = img_size // 8
     border_size = 5
@@ -121,4 +129,4 @@ while True:
     cl.photo_upload("insta_post.jpg", caption)
     print("Puzzle posted to instagram")
 
-    time.sleep(300)
+    time.sleep(DELAY)

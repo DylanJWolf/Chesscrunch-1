@@ -11,7 +11,6 @@ import time
 from instagrapi.exceptions import LoginRequired
 import logging
 
-
 DELAY = 300  # Seconds between posts
 HASHTAGS = "#Chess #ChessGame #ChessBoard #ChessPlayer #ChessMaster #ChessTournament #ChessPost #ChessMemes " \
            "#Grandmaster #ChessLife #PlayingChess #BoardGames #Puzzle #ChessTactics #ChessPuzzle #ChessPuzzles"
@@ -130,7 +129,13 @@ while True:
     if not whites_move:
         caption = 'Black to play and win!\n'
     caption += 'Comment the solution once you find it!\n\n' + HASHTAGS
-    cl.photo_upload("insta_post.jpg", caption)
+    try:
+        cl.photo_upload("insta_post.jpg", caption)
+    except:
+        cl.login(USERNAME, PASSWORD)
+        cl.dump_settings(CURR_SESSION)
+        print("SESSION FAILED, RELOGIN ATTEMPTED")
+        cl.photo_upload("insta_post.jpg", caption)
     print("Puzzle posted to instagram")
 
     time.sleep(DELAY)

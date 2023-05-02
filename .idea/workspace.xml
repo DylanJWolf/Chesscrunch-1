@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf3068dc-a0ad-4024-bbc8-d796dfd421d2" name="Changes" comment="Began implementing difficulty in puzzle_gen, not yet ported to automate.py&#10;Added try/except block to automate.py which will attempt to relogin and post again if post fails." />
+    <list default="true" id="bf3068dc-a0ad-4024-bbc8-d796dfd421d2" name="Changes" comment="removed potentially redundent login stuff" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,7 +63,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682986101768</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="removed potentially redundent login stuff">
+      <created>1682986427714</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1682986427714</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -81,6 +88,7 @@
     <MESSAGE value="Added coordinates to the board&#10;Added puzzle_gen.py to test the puzzle generation" />
     <MESSAGE value="Increased puzzle list to 3,000,000&#10;Added hashtags and call to action to captions" />
     <MESSAGE value="Began implementing difficulty in puzzle_gen, not yet ported to automate.py&#10;Added try/except block to automate.py which will attempt to relogin and post again if post fails." />
-    <option name="LAST_COMMIT_MESSAGE" value="Began implementing difficulty in puzzle_gen, not yet ported to automate.py&#10;Added try/except block to automate.py which will attempt to relogin and post again if post fails." />
+    <MESSAGE value="removed potentially redundent login stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed potentially redundent login stuff" />
   </component>
 </project>

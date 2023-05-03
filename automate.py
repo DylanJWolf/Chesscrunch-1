@@ -82,7 +82,7 @@ while True:
     slides = []
     # Slides will always have 10 jpgs (0 - 9). Only the updated IMGs get uploaded. The rest will contain garbage
     for f in range(0, num_moves):
-        slides.append('Slides/slide' + str(f))
+        slides.append('Slides/slide' + str(f) + '.jpg')
 
     if not no_login:
         cl.album_upload(slides, caption)
@@ -94,5 +94,5 @@ while True:
         writer.writerow(puzzle_gen.puzzle)
 
     if exit_loop:
-        break;
+        break
     time.sleep(DELAY)

@@ -3,90 +3,104 @@
 # Rewrites insta_post.jpg each time ran.
 ########################################################################################################################
 import csv
-import random
+import os
 from PIL import Image
 import chess
 
 ########################################################################################################################
-# Loading the puzzles from the database and choosing one and random
+# Loading the puzzles from the database
 ########################################################################################################################
 puzzles = []
-PUZZLES_LEN = 1000000  # Number of puzzles to choose from
-filename = "lichess_db_puzzle.csv"
+PUZZLES_LEN = 2394  # Number of puzzles to choose from
+puzzle_index = 0  # Current position in the puzzle database
+filename = "puzzles_database.csv"
 
-difficulties = {
-    "easy": (1900, 1999),
-    "medium": (2000, 2299),
-    "hard": (2300, 2499),
-    "grandmaster": (2500, 3000)
-}
 
-with open(filename, 'r') as data:
-    print("loading puzzles")
-    for line in csv.reader(data):
-        if len(puzzles) >= PUZZLES_LEN:
-            break
-        puzzles.append(line)
-    print(PUZZLES_LEN, "puzzles loaded")
+def load_puzzles():
+    with open(filename, 'r') as data:
+        print("loading puzzles")
+        for line in csv.reader(data):
+            if len(puzzles) >= PUZZLES_LEN:
+                break
+            puzzles.append(line)
+        print(PUZZLES_LEN, "puzzles loaded")
 
-for difficulty in difficulties:
-    range = difficulties[difficulty]
-    randNum = random.randint(0, PUZZLES_LEN - 1)
-    randPuzzle = puzzles[randNum]
-    rating = int(randPuzzle[3])
-    popularity = int(randPuzzle[5])
-    plays = int(randPuzzle[6])
-    # Keep trying random puzzles until we find one within the rating range
-    while rating < range[0] or rating > range[1] or popularity < 80 or plays < 1000:
-        randNum = random.randint(0, PUZZLES_LEN - 1)
-        randPuzzle = puzzles[randNum]
-        popularity = int(randPuzzle[5])
-        rating = int(randPuzzle[3])
-        plays = int(randPuzzle[6])
-    fen = randPuzzle[1]
-    print(randPuzzle)
+
+def generate_slides():
+    global puzzle_index
+    puzzle = puzzles[puzzle_index]
+    puzzle_index += 1
+    fen = puzzle[1]
+    moves = puzzle[2].split(" ")
+    print(puzzle)
+
+    ####################################################################################################################
+    # Creating the board images
+    ####################################################################################################################
+    whites_move = 'w' not in puzzle[1]  # Lichess starts the puzzles a move early
     board = chess.Board(fen)
-    next_move = randPuzzle[2][0:4]
-    board.push_uci(next_move)
-    fen = board.fen()  # Updating fen to account for the blunder
-    whites_move = 'w' in fen
 
-    ####################################################################################################################
-    # Creating the board image
-    ####################################################################################################################
-    img_size = 1000  # resolution of the image
-    board_img = Image.open("Boards/chess_board_white_perspective.png").convert("RGBA")
-    if not whites_move:
-        board_img = Image.open("Boards/chess_board_black_perspective.png").convert("RGBA")
-    piece_image = Image.open("Images/blackKing.png").convert("RGBA")
-    square_size = img_size // 8
-    border_size = 5
-    piece_size = square_size - 2 * border_size
-    piece_image = piece_image.resize((square_size, square_size))
+    for m in range(len(moves)):
+        move = moves[m]
+        board.push_uci(moves[m])
+        fen = board.fen()  # Updating board state for previous move
 
-    images = {
-        'p': "Images/blackPawn.png", 'r': "Images/blackRook.png", 'k': "Images/blackKing.png",
-        'q': "Images/blackQueen.png", 'b': "Images/blackBishop.png", 'n': "Images/blackKnight.png",
-        'P': "Images/whitePawn.png", 'R': "Images/whiteRook.png", 'K': "Images/whiteKing.png",
-        'Q': "Images/whiteQueen.png", 'B': "Images/whiteBishop.png", 'N': "Images/whiteKnight.png"
-    }
+        board_img = Image.open("Boards/chess_board_white_perspective.png").convert("RGBA")
+        if not whites_move:
+            board_img = Image.open("Boards/chess_board_black_perspective.png").convert("RGBA")
+        last_move = Image.open("Images/lastMove.png").convert("RGBA")
 
-    cur_x = cur_y = 0
-    for char in fen:
-        if char in images.keys():
-            piece_img = Image.open(images[char]).convert("RGBA").resize((square_size, square_size))
-            piece_pos = (square_size * cur_x, square_size * cur_y)
-            if not whites_move:
-                piece_pos = (square_size * (7 - cur_x), square_size * (7 - cur_y))
-            board_img.alpha_composite(piece_img, dest=piece_pos)
-            cur_x += 1
-        elif char == '/':
-            cur_x = 0
-            cur_y += 1
-        elif char == ' ':
-            break
+        pieces = {
+            'p': "Images/blackPawn.png", 'r': "Images/blackRook.png", 'k': "Images/blackKing.png",
+            'q': "Images/blackQueen.png", 'b': "Images/blackBishop.png", 'n': "Images/blackKnight.png",
+            'P': "Images/whitePawn.png", 'R': "Images/whiteRook.png", 'K': "Images/whiteKing.png",
+            'Q': "Images/whiteQueen.png", 'B': "Images/whiteBishop.png", 'N': "Images/whiteKnight.png"
+        }
+
+        img_size = 1000  # resolution of the image
+        square_size = img_size // 8
+
+        # Calculating position of highlighted squares to indicate next more
+        last_square_x = last_square_y = new_square_x = new_square_y = 0
+        if whites_move:
+            last_square_x = (ord(move[0]) - ord('a')) * square_size
+            last_square_y = (8 - int(move[1])) * square_size
+            new_square_x = (ord(move[2]) - ord('a')) * square_size
+            new_square_y = (8 - int(move[3])) * square_size
         else:
-            cur_x += int(char)
+            last_square_x = (7 - (ord(move[0]) - ord('a'))) * square_size
+            last_square_y = (int(move[1]) - 1) * square_size
+            new_square_x = (7 - (ord(move[2]) - ord('a'))) * square_size
+            new_square_y = (int(move[3]) - 1) * square_size
 
-    board_img = board_img.convert('RGB')
-    board_img.save('insta_post.jpg')
+        if m != 0:
+            board_img.paste(last_move, (last_square_x, last_square_y), last_move)
+            board_img.paste(last_move, (new_square_x, new_square_y), last_move)
+
+        # Reading the FEN and placing the pieces onto the board
+        cur_x = cur_y = 0
+        for char in fen:
+            if char in pieces.keys():
+                piece_img = Image.open(pieces[char]).convert("RGBA").resize((square_size, square_size))
+                piece_pos = (square_size * cur_x, square_size * cur_y)
+                if not whites_move:
+                    piece_pos = (square_size * (7 - cur_x), square_size * (7 - cur_y))
+                board_img.alpha_composite(piece_img, dest=piece_pos)
+                cur_x += 1
+            elif char == '/':
+                cur_x = 0
+                cur_y += 1
+            elif char == ' ':
+                break
+            else:
+                cur_x += int(char)
+
+        board_img = board_img.convert('RGB')
+        img_path = 'Slides/slide' + str(m) + ".jpg"
+        board_img.save(img_path)
+
+
+# Remove the previous slides
+def delete_slides():
+    for file in os.listdir('Slides'):
+        os.remove('Slides/' + file)

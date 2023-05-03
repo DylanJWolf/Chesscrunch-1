@@ -2,3 +2,7 @@
 01jRL,r5k1/4p1b1/p2qN1p1/1p1P3p/1Pp3b1/Q1N3P1/P4rBP/4R2K b - - 3 30,g7e5 c3e4 d6b6 e4f2 b6f2 e1e5 f2d2 a3e3,2320,76,94,2479,advantage discoveredAttack fork middlegame veryLong,https://lichess.org/Al6dfD6O/black#60,
 02prq,5r2/1bq1k2Q/p3pr2/1p1n1pN1/5Pn1/8/PP4PP/3RRBK1 b - - 2 27,e7d6 e1e6 f6e6 h7c7 d6c7 g5e6 c7d7 e6f8,2454,76,94,1980,attraction crushing fork master middlegame pin veryLong,https://lichess.org/iK1ujUS7/black#54,
 03BKg,1rbq1k1r/p1p3pp/2nbPpn1/3N4/3P4/2P2Q2/PP3PPP/R1B1R1K1 b - - 2 18,c6e7 f3f6 g7f6 c1h6 f8g8 d5f6,2588,85,95,2704,intermezzo long mate mateIn3 opening sacrifice,https://lichess.org/yChTknxk/black#36,Four_Knights_Game Four_Knights_Game_Halloween_Gambit
+03jUK,4r2k/1b3Bpp/ppq2b1B/2p5/P2p2Q1/3P4/1PP2RPP/5rK1 w - - 0 28,g1f1 e8f8 f7b3 g7h6,2425,77,94,1216,crushing middlegame short,https://lichess.org/u2tVp1xp#55,
+04eZ9,4kR2/1b1pb2p/pQ2N3/4P1rq/3n3P/8/PPP3P1/R6K b - - 6 25,e7f8 b6d8 e8f7 d8f6 f7g8 f6f8,2457,78,94,2863,long mate mateIn3 middlegame,https://lichess.org/sACmZ8xs/black#50,
+04yi1,R7/7k/5K2/4P3/6r1/7p/8/8 w - - 0 51,a8a3 g4g6 f6f7 h3h2 a3h3 g6h6 h3h2 h6h2 e5e6 h2f2,2455,77,94,2660,advancedPawn crushing endgame master rookEndgame veryLong,https://lichess.org/PtwbtSfd#101,
+05VnQ,8/8/pp1p1k1p/2pP2p1/2P1K1P1/1P5P/P7/8 w - - 0 45,e4e3 f6e5 a2a3 b6b5 e3d3 b5c4,2371,76,94,3123,crushing endgame long pawnEndgame zugzwang,https://lichess.org/g1bw2R9j#89,

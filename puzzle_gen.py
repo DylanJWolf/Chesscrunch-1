@@ -21,7 +21,7 @@ filename = "puzzles_database.csv"
 def load_puzzles():
     # Load puzzle database into puzzles
     with open(filename, 'r') as data:
-        print("loading puzzles")
+        print("loading puzzles...")
         for line in csv.reader(data):
             if len(puzzles) >= PUZZLES_LEN:
                 break
@@ -46,7 +46,7 @@ def generate_slides():
         puzzle_index += 1
     fen = puzzle[1]
     moves = puzzle[2].split(" ")
-    print(puzzle)
+    print("Queuing puzzle:", puzzle)
 
     ####################################################################################################################
     # Creating the board images

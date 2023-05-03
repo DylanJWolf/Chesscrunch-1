@@ -63,14 +63,25 @@ puzzle_gen.load_puzzles()
 while True:
     puzzle_gen.delete_slides()
     puzzle_gen.generate_slides()
-    caption = 'White to play and win!\n'
+    queued_puzzle = puzzle_gen.puzzle
+
+    caption = 'White to play '
+    if 'w' in queued_puzzle[1]:  # Lichess starts the puzzle a move early.
+        caption = 'Black to play '
+    theme = queued_puzzle[7]
+    if 'mate' in theme:
+        caption += 'and checkmate their opponent!\n'
+    else:
+        caption += 'and win!\n'
+    caption += HASHTAGS
+
     slides = []
     for file in os.listdir('Slides'):
         slides.append('Slides/' + file)
     cl.album_upload(slides, caption)
 
     # Append the puzzle ID we just posted into the repeats list
-    with open('repeats.csv', mode="a", newline = '') as file:
+    with open('repeats.csv', mode="a", newline='') as file:
         writer = csv.writer(file)
         writer.writerow(puzzle_gen.puzzle)
 

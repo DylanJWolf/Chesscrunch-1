@@ -11,12 +11,15 @@ import chess
 # Loading the puzzles from the database
 ########################################################################################################################
 puzzles = []
+repeats = []  # List of puzzles that we have already posted
 PUZZLES_LEN = 2394  # Number of puzzles to choose from
 puzzle_index = 0  # Current position in the puzzle database
+puzzle = None  # Puzzle currently being made
 filename = "puzzles_database.csv"
 
 
 def load_puzzles():
+    # Load puzzle database into puzzles
     with open(filename, 'r') as data:
         print("loading puzzles")
         for line in csv.reader(data):
@@ -25,11 +28,22 @@ def load_puzzles():
             puzzles.append(line)
         print(PUZZLES_LEN, "puzzles loaded")
 
+    # Load puzzles we've posted already into repeats
+    # We only need to do this when the script is restarted. The puzzle index increments on its own
+    with open('repeats.csv') as file:
+        for line in csv.reader(file):
+            repeats.append(line)
+
 
 def generate_slides():
     global puzzle_index
+    global puzzle
     puzzle = puzzles[puzzle_index]
     puzzle_index += 1
+    # If we have posted this puzzle, increment puzzle index until we find one we haven't posted
+    while puzzle in repeats:
+        puzzle = puzzles[puzzle_index]
+        puzzle_index += 1
     fen = puzzle[1]
     moves = puzzle[2].split(" ")
     print(puzzle)

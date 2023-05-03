@@ -2,6 +2,7 @@
 # Randomly chooses a puzzle from the Lichess puzzles database
 # Creates an image of the puzzle and posts it to Instagram
 ########################################################################################################################
+import csv
 from instagrapi import Client
 import time
 from instagrapi.exceptions import LoginRequired
@@ -9,7 +10,7 @@ import logging
 import puzzle_gen
 import os
 
-DELAY = 600  # Seconds between posts
+DELAY = 3600  # Seconds between posts
 HASHTAGS = "#Chess #ChessGame #ChessBoard #ChessPlayer #ChessMaster #ChessTournament #ChessPost #ChessMemes " \
            "#Grandmaster #ChessLife #PlayingChess #BoardGames #Puzzle #ChessTactics #ChessPuzzle #ChessPuzzles"
 
@@ -67,4 +68,10 @@ while True:
     for file in os.listdir('Slides'):
         slides.append('Slides/' + file)
     cl.album_upload(slides, caption)
+
+    # Append the puzzle ID we just posted into the repeats list
+    with open('repeats.csv', mode="a", newline = '') as file:
+        writer = csv.writer(file)
+        writer.writerow(puzzle_gen.puzzle)
+
     time.sleep(DELAY)

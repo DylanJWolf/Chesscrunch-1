@@ -4,13 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf3068dc-a0ad-4024-bbc8-d796dfd421d2" name="Changes" comment="Added back the stuff I should not have removed">
+    <list default="true" id="bf3068dc-a0ad-4024-bbc8-d796dfd421d2" name="Changes" comment="- Modularized puzzle_gen.py&#10;- Now uploads an 'album' showing the solution to the puzzle&#10;- Password no longer exposed&#10;- Replaced the csv with a much shorter one">
+      <change afterPath="$PROJECT_DIR$/repeats.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/slide0.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/slide0.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/slide1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/slide1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/slide2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/slide2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/slide3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/slide3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/slide4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/slide4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/slide5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/slide5.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/slide6.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/slide6.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/slide7.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/slide7.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/slide8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/slide9.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/automate.py" beforeDir="false" afterPath="$PROJECT_DIR$/automate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chesstesting.json" beforeDir="false" afterPath="$PROJECT_DIR$/session.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/insta_post.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/puzzle_gen.py" beforeDir="false" afterPath="$PROJECT_DIR$/puzzle_gen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzles_database.csv" beforeDir="false" afterPath="$PROJECT_DIR$/puzzles_database.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +99,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682987062454</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="- Modularized puzzle_gen.py&#10;- Now uploads an 'album' showing the solution to the puzzle&#10;- Password no longer exposed&#10;- Replaced the csv with a much shorter one">
+      <created>1683078529679</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1683078529679</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -109,6 +126,7 @@
     <MESSAGE value="Began implementing difficulty in puzzle_gen, not yet ported to automate.py&#10;Added try/except block to automate.py which will attempt to relogin and post again if post fails." />
     <MESSAGE value="removed potentially redundent login stuff" />
     <MESSAGE value="Added back the stuff I should not have removed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added back the stuff I should not have removed" />
+    <MESSAGE value="- Modularized puzzle_gen.py&#10;- Now uploads an 'album' showing the solution to the puzzle&#10;- Password no longer exposed&#10;- Replaced the csv with a much shorter one" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Modularized puzzle_gen.py&#10;- Now uploads an 'album' showing the solution to the puzzle&#10;- Password no longer exposed&#10;- Replaced the csv with a much shorter one" />
   </component>
 </project>

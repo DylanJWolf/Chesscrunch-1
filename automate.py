@@ -8,7 +8,6 @@ import time
 from instagrapi.exceptions import LoginRequired
 import logging
 import puzzle_gen
-import os
 
 DELAY = 3600  # Seconds between posts
 HASHTAGS = "#Chess #ChessGame #ChessBoard #ChessPlayer #ChessMaster #ChessTournament #ChessPost #ChessMemes " \
@@ -20,7 +19,7 @@ cl = Client()
 ########################################################################################################################
 USERNAME = "chessaccount3"
 CURR_SESSION = "session.json"
-no_login = False  # For testing purposes, skip the login and upload process
+no_login = True # For testing purposes, skip the login and upload process
 exit_loop = True  # For testing purposes, run once rather than continuously
 
 if not no_login:
@@ -66,7 +65,6 @@ if not no_login:
 ####################################################################################################################
 puzzle_gen.load_puzzles()
 while True:
-    puzzle_gen.delete_slides()
     puzzle_gen.generate_slides()
     queued_puzzle = puzzle_gen.puzzle
 
@@ -80,10 +78,13 @@ while True:
         caption += 'and win!\n'
     caption += '\n' + HASHTAGS
 
+    num_moves = len(queued_puzzle[2].split(" "))  # Number of moves in the puzzle
+    slides = []
+    # Slides will always have 10 jpgs (0 - 9). Only the updated IMGs get uploaded. The rest will contain garbage
+    for f in range(0, num_moves):
+        slides.append('Slides/slide' + str(f))
+
     if not no_login:
-        slides = []
-        for file in os.listdir('Slides'):
-            slides.append('Slides/' + file)
         cl.album_upload(slides, caption)
         print("Puzzle uploaded to instagram")
 

@@ -112,9 +112,3 @@ def generate_slides():
         board_img = board_img.convert('RGB')
         img_path = 'Slides/slide' + str(m) + ".jpg"
         board_img.save(img_path)
-
-
-# Remove the previous slides
-def delete_slides():
-    for file in os.listdir('Slides'):
-        os.remove('Slides/' + file)

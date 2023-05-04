@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf3068dc-a0ad-4024-bbc8-d796dfd421d2" name="Changes" comment="- Added some useful print statements&#10;- Improved hashtags&#10;- added exit_loop and no_login booleans for debugging">
+    <list default="true" id="bf3068dc-a0ad-4024-bbc8-d796dfd421d2" name="Changes" comment="Fixed bug in slides file path, removed typo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Slides/slide0.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/slide0.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Slides/slide1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/slide1.jpg" afterDir="false" />
@@ -12,8 +12,11 @@
       <change beforePath="$PROJECT_DIR$/Slides/slide3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/slide3.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Slides/slide4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/slide4.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Slides/slide5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/slide5.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/slide6.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/slide6.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/slide7.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/slide7.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/slide8.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/slide8.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/slide9.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/slide9.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/automate.py" beforeDir="false" afterPath="$PROJECT_DIR$/automate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/puzzle_gen.py" beforeDir="false" afterPath="$PROJECT_DIR$/puzzle_gen.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/puzzles_database.csv" beforeDir="false" afterPath="$PROJECT_DIR$/puzzles_database.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/repeats.csv" beforeDir="false" afterPath="$PROJECT_DIR$/repeats.csv" afterDir="false" />
     </list>
@@ -129,7 +132,21 @@
       <option name="project" value="LOCAL" />
       <updated>1683141534178</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Removed need for OS.">
+      <created>1683148762172</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1683148762172</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Fixed bug in slides file path, removed typo">
+      <created>1683149657795</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1683149657795</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -154,6 +171,8 @@
     <MESSAGE value="- Added some basic captioning" />
     <MESSAGE value="- Updated the repeats file" />
     <MESSAGE value="- Added some useful print statements&#10;- Improved hashtags&#10;- added exit_loop and no_login booleans for debugging" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Added some useful print statements&#10;- Improved hashtags&#10;- added exit_loop and no_login booleans for debugging" />
+    <MESSAGE value="Removed need for OS." />
+    <MESSAGE value="Fixed bug in slides file path, removed typo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug in slides file path, removed typo" />
   </component>
 </project>

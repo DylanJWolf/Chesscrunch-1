@@ -4,26 +4,44 @@
 ########################################################################################################################
 import csv
 from instagrapi import Client
+from instagrapi import exceptions
 import time
-from instagrapi.exceptions import LoginRequired
 import logging
 import puzzle_gen
 
-DELAY = 3600  # Seconds between posts
+DELAY = 1200  # Seconds between posts
+proxy1 = "http://lvzgfwlq:nu7g7fkk78hi@2.56.119.93:5074"
+proxy2 = "http://lvzgfwlq:nu7g7fkk78hi@185.199.229.156:7492"
+curr_proxy = proxy1
+cl = Client()
+cl.set_proxy(curr_proxy)
+
+USERNAME = "chessaccount3"
+CURR_SESSION = "session.json"
+no_login = False  # For testing purposes, skip the login and upload process
+exit_loop = False  # For testing purposes, run once rather than continuously
+
 HASHTAGS = "#Chess #ChessGame #ChessBoard #ChessPlayer #ChessMaster #ChessTournament #ChessPost #ChessMemes " \
            "#Grandmaster #ChessLife #PlayingChess #BoardGames #Puzzle #ChessTactics #ChessPuzzle #ChessPuzzles"
-cl = Client()
+
+
+# Swap proxies to evade IP bans
+def switch_proxy():
+    global curr_proxy
+    if curr_proxy == proxy1:
+        curr_proxy = proxy2
+        cl.set_proxy(proxy2)
+    else:
+        curr_proxy = proxy1
+        cl.set_proxy(proxy1)
+    print("Proxy switched")
+
 
 ########################################################################################################################
 # Logging into instagram session
 ########################################################################################################################
-USERNAME = "chessaccount3"
-CURR_SESSION = "session.json"
-no_login = True # For testing purposes, skip the login and upload process
-exit_loop = True  # For testing purposes, run once rather than continuously
-
-if not no_login:
-    PASSWORD = input("Enter Password: ")
+def insta_log():
+    password = input("Enter Password: ")
     logger = logging.getLogger()
     print("Logging into instagram...")
     session = cl.load_settings(CURR_SESSION)
@@ -33,17 +51,17 @@ if not no_login:
     if session:
         try:
             cl.set_settings(session)
-            cl.login(USERNAME, PASSWORD)
+            cl.login(USERNAME, password)
             # check if session is valid
             try:
                 cl.get_timeline_feed()
-            except LoginRequired:
+            except exceptions.LoginRequired:
                 logger.info("Session is invalid, need to login via username and password")
                 old_session = cl.get_settings()
                 # use the same device uuids across logins
                 cl.set_settings({})
                 cl.set_uuids(old_session["uuids"])
-                cl.login(USERNAME, PASSWORD)
+                cl.login(USERNAME, password)
             login_via_session = True
         except Exception as e:
             logger.info("Couldn't login user using session information: %s" % e)
@@ -51,7 +69,7 @@ if not no_login:
     if not login_via_session:
         try:
             logger.info("Attempting to login via username and password. username: %s" % USERNAME)
-            if cl.login(USERNAME, PASSWORD):
+            if cl.login(USERNAME, password):
                 login_via_pw = True
         except Exception as e:
             logger.info("Couldn't login user using username and password: %s" % e)
@@ -59,6 +77,10 @@ if not no_login:
     if not login_via_pw and not login_via_session:
         raise Exception("Couldn't login user with either password or session")
     print("Login complete.")
+
+
+if not no_login:
+    insta_log()
 
 ####################################################################################################################
 # Posting Puzzles
@@ -85,14 +107,25 @@ while True:
         slides.append('Slides/slide' + str(f) + '.jpg')
 
     if not no_login:
-        cl.album_upload(slides, caption)
-        print("Puzzle uploaded to instagram")
+        try:
+            cl.album_upload(slides, caption)
+            print("Puzzle uploaded to instagram")
+            # Append the puzzle ID we just posted into the repeats list
+            with open('repeats.csv', mode="a", newline='') as file:
+                writer = csv.writer(file)
+                writer.writerow(puzzle_gen.puzzle)
+        except Exception as e:
+            print("Failed to upload: ", e)
+            if "Please wait a few minutes" in str(e):
+                print("Instagram requests we wait a few minutes. Switching proxy and will try again next cycle")
+                switch_proxy()
 
-    # Append the puzzle ID we just posted into the repeats list
-    with open('repeats.csv', mode="a", newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow(puzzle_gen.puzzle)
+            else:
+                print("Instagram terminated our session. Switching proxy and Relogging...")
+                switch_proxy()
+                insta_log()
 
     if exit_loop:
         break
+
     time.sleep(DELAY)

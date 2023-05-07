@@ -3,13 +3,12 @@
 # Creates an image of the puzzle and posts it to Instagram
 ########################################################################################################################
 import csv
-from instagrapi import Client
-from instagrapi import exceptions
+from instagrapi import Client, exceptions
 import time
 import logging
 import puzzle_gen
 
-DELAY = 1200  # Seconds between posts
+DELAY = 1800  # Seconds between posts
 proxy1 = "http://lvzgfwlq:nu7g7fkk78hi@2.56.119.93:5074"
 proxy2 = "http://lvzgfwlq:nu7g7fkk78hi@185.199.229.156:7492"
 curr_proxy = proxy1
@@ -17,9 +16,11 @@ cl = Client()
 cl.delay_range = [1, 3]
 cl.set_proxy(curr_proxy)
 
-USERNAME = "chessaccount3"
+USERNAME = "chess.enthusiasts"
+PASSWORD = ""
 CURR_SESSION = "session.json"
-no_login = True  # For testing purposes, skip the login and upload process
+
+no_login = False  # For testing purposes, skip the login and upload process
 exit_loop = True  # For testing purposes, run once rather than continuously
 
 HASHTAGS = "#Chess #ChessGame #ChessBoard #ChessPlayer #ChessMaster #ChessTournament #ChessPost #ChessMemes " \
@@ -42,7 +43,9 @@ def switch_proxy():
 # Logging into instagram session
 ########################################################################################################################
 def insta_log():
-    password = input("Enter Password: ")
+    global PASSWORD
+    if PASSWORD == "":
+        password = input("Enter Password: ")
     logger = logging.getLogger()
     print("Logging into instagram...")
     session = cl.load_settings(CURR_SESSION)

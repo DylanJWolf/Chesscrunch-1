@@ -1,9 +1,7 @@
 ########################################################################################################################
 # Used for testing the puzzle generator functionality. Does not deal with Instagrapi
-# Rewrites insta_post.jpg each time ran.
 ########################################################################################################################
 import csv
-import os
 from PIL import Image
 import chess
 

@@ -4,36 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf3068dc-a0ad-4024-bbc8-d796dfd421d2" name="Changes" comment="Implemented proxies and error handling to hopefully keep the script running for longer.">
-      <change afterPath="$PROJECT_DIR$/Pieces/piece_index.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Themes/theme_index.txt" afterDir="false" />
+    <list default="true" id="bf3068dc-a0ad-4024-bbc8-d796dfd421d2" name="Changes" comment="Added themes!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Boards/chess_board.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Boards/chess_board_black_perspective.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Boards/chess_board_white_perspective.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/blackBishop.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/blackKing.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/blackKnight.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/blackPawn.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/blackQueen.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/blackRook.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/lastMove.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/whiteBishop.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/whiteKing.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/whiteKnight.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/whitePawn.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/whiteQueen.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/whiteRook.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pieces/piece_index.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Pieces/piece_index.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Slides/slide0.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/slide0.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Slides/slide1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/slide1.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Slides/slide2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/slide2.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Slides/slide3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/slide3.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Slides/slide4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/slide4.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Slides/slide5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/slide5.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/slide6.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/slide6.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/slide7.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/slide7.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Themes/theme_index.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Themes/theme_index.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/automate.py" beforeDir="false" afterPath="$PROJECT_DIR$/automate.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/puzzle_gen.py" beforeDir="false" afterPath="$PROJECT_DIR$/puzzle_gen.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/puzzles_database.csv" beforeDir="false" afterPath="$PROJECT_DIR$/puzzles_database.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repeats.csv" beforeDir="false" afterPath="$PROJECT_DIR$/repeats.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +153,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683227007553</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Added themes!">
+      <created>1683422824059</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1683422824059</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -196,6 +188,7 @@
     <MESSAGE value="Removed need for OS." />
     <MESSAGE value="Fixed bug in slides file path, removed typo" />
     <MESSAGE value="Implemented proxies and error handling to hopefully keep the script running for longer." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented proxies and error handling to hopefully keep the script running for longer." />
+    <MESSAGE value="Added themes!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added themes!" />
   </component>
 </project>

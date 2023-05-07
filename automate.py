@@ -21,7 +21,7 @@ PASSWORD = ""
 CURR_SESSION = "session.json"
 
 no_login = False  # For testing purposes, skip the login and upload process
-exit_loop = True  # For testing purposes, run once rather than continuously
+exit_loop = False  # For testing purposes, run once rather than continuously
 
 HASHTAGS = "#Chess #ChessGame #ChessBoard #ChessPlayer #ChessMaster #ChessTournament #ChessPost #ChessMemes " \
            "#Grandmaster #ChessLife #PlayingChess #BoardGames #Puzzle #ChessTactics #ChessPuzzle #ChessPuzzles"
@@ -45,7 +45,7 @@ def switch_proxy():
 def insta_log():
     global PASSWORD
     if PASSWORD == "":
-        password = input("Enter Password: ")
+        PASSWORD = input("Enter Password: ")
     logger = logging.getLogger()
     print("Logging into instagram...")
     session = cl.load_settings(CURR_SESSION)
@@ -55,7 +55,7 @@ def insta_log():
     if session:
         try:
             cl.set_settings(session)
-            cl.login(USERNAME, password)
+            cl.login(USERNAME, PASSWORD)
             # check if session is valid
             try:
                 cl.get_timeline_feed()
@@ -65,7 +65,7 @@ def insta_log():
                 # use the same device uuids across logins
                 cl.set_settings({})
                 cl.set_uuids(old_session["uuids"])
-                cl.login(USERNAME, password)
+                cl.login(USERNAME, PASSWORD)
             login_via_session = True
         except Exception as e:
             logger.info("Couldn't login user using session information: %s" % e)
@@ -73,7 +73,7 @@ def insta_log():
     if not login_via_session:
         try:
             logger.info("Attempting to login via username and password. username: %s" % USERNAME)
-            if cl.login(USERNAME, password):
+            if cl.login(USERNAME, PASSWORD):
                 login_via_pw = True
         except Exception as e:
             logger.info("Couldn't login user using username and password: %s" % e)

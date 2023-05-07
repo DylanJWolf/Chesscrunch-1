@@ -12,8 +12,11 @@ import chess
 ########################################################################################################################
 puzzles = []
 repeats = []  # List of puzzles that we have already posted
+themes = ['Themes/Purple/', 'Themes/Blue/', 'Themes/Green/']  # List of themes I've got.
+piece_sets = ['Pieces/cardinal/', 'Pieces/cburnett/', 'Pieces/maestro/']  # List of piece sets I've got.
 PUZZLES_LEN = 2394  # Number of puzzles to choose from
 puzzle_index = 0  # Current position in the puzzle database
+piece_index = 0  # Current piece set to use
 puzzle = None  # Puzzle currently being made
 filename = "puzzles_database.csv"
 
@@ -36,10 +39,8 @@ def load_puzzles():
 
 
 def generate_slides():
-    global puzzle_index
-    global puzzle
+    global puzzle_index, piece_index, puzzle
     puzzle = puzzles[puzzle_index]
-    puzzle_index += 1
     # If we have posted this puzzle, increment puzzle index until we find one we haven't posted
     while puzzle in repeats:
         puzzle = puzzles[puzzle_index]
@@ -51,6 +52,11 @@ def generate_slides():
     ####################################################################################################################
     # Creating the board images
     ####################################################################################################################
+    with open('Themes/theme_index.txt', mode="r") as file:
+        theme = themes[int(file.read())]
+    with open('Pieces/piece_index.txt', mode="r") as file:
+        piece_set = piece_sets[int(file.read())]
+
     whites_move = 'w' not in puzzle[1]  # Lichess starts the puzzles a move early
     board = chess.Board(fen)
 
@@ -59,16 +65,16 @@ def generate_slides():
         board.push_uci(moves[m])
         fen = board.fen()  # Updating board state for previous move
 
-        board_img = Image.open("Boards/chess_board_white_perspective.png").convert("RGBA")
+        board_img = Image.open(theme + "whitePerspective.png").convert("RGBA")
         if not whites_move:
-            board_img = Image.open("Boards/chess_board_black_perspective.png").convert("RGBA")
-        last_move = Image.open("Images/lastMove.png").convert("RGBA")
+            board_img = Image.open(theme + "blackPerspective.png").convert("RGBA")
+        last_move = Image.open(theme + "lastMove.png").convert("RGBA")
 
         pieces = {
-            'p': "Images/blackPawn.png", 'r': "Images/blackRook.png", 'k': "Images/blackKing.png",
-            'q': "Images/blackQueen.png", 'b': "Images/blackBishop.png", 'n': "Images/blackKnight.png",
-            'P': "Images/whitePawn.png", 'R': "Images/whiteRook.png", 'K': "Images/whiteKing.png",
-            'Q': "Images/whiteQueen.png", 'B': "Images/whiteBishop.png", 'N': "Images/whiteKnight.png"
+            'p': piece_set + "blackPawn.png", 'r': piece_set + "blackRook.png", 'k': piece_set + "blackKing.png",
+            'q': piece_set + "blackQueen.png", 'b': piece_set + "blackBishop.png", 'n': piece_set + "blackKnight.png",
+            'P': piece_set + "whitePawn.png", 'R': piece_set + "whiteRook.png", 'K': piece_set + "whiteKing.png",
+            'Q': piece_set + "whiteQueen.png", 'B': piece_set + "whiteBishop.png", 'N': piece_set + "whiteKnight.png"
         }
 
         img_size = 1000  # resolution of the image

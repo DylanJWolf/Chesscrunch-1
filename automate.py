@@ -14,12 +14,13 @@ proxy1 = "http://lvzgfwlq:nu7g7fkk78hi@2.56.119.93:5074"
 proxy2 = "http://lvzgfwlq:nu7g7fkk78hi@185.199.229.156:7492"
 curr_proxy = proxy1
 cl = Client()
+cl.delay_range = [1, 3]
 cl.set_proxy(curr_proxy)
 
 USERNAME = "chessaccount3"
 CURR_SESSION = "session.json"
-no_login = False  # For testing purposes, skip the login and upload process
-exit_loop = False  # For testing purposes, run once rather than continuously
+no_login = True  # For testing purposes, skip the login and upload process
+exit_loop = True  # For testing purposes, run once rather than continuously
 
 HASHTAGS = "#Chess #ChessGame #ChessBoard #ChessPlayer #ChessMaster #ChessTournament #ChessPost #ChessMemes " \
            "#Grandmaster #ChessLife #PlayingChess #BoardGames #Puzzle #ChessTactics #ChessPuzzle #ChessPuzzles"
@@ -114,16 +115,29 @@ while True:
             with open('repeats.csv', mode="a", newline='') as file:
                 writer = csv.writer(file)
                 writer.writerow(puzzle_gen.puzzle)
+            puzzle_gen.puzzle_index += 1
+
         except Exception as e:
             print("Failed to upload: ", e)
             if "Please wait a few minutes" in str(e):
                 print("Instagram requests we wait a few minutes. Switching proxy and will try again next cycle")
                 switch_proxy()
-
             else:
                 print("Instagram terminated our session. Switching proxy and Relogging...")
                 switch_proxy()
                 insta_log()
+
+    # Increment the theme index and piece index so the next post is different
+    with open('Themes/theme_index.txt', mode="r") as file:
+        theme_index = (int(file.read()) + 1) % len(puzzle_gen.themes)
+    with open('Themes/theme_index.txt', mode="w") as file:
+        file.write(str(theme_index))
+    # Only increment the piece index once per theme cycle
+    if theme_index == 0:
+        with open('Pieces/piece_index.txt', mode="r") as file:
+            piece_index = (int(file.read()) + 1) % len(puzzle_gen.piece_sets)
+        with open('Pieces/piece_index.txt', mode="w") as file:
+            file.write(str(piece_index))
 
     if exit_loop:
         break

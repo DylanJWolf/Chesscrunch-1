@@ -4,7 +4,8 @@
 ########################################################################################################################
 import csv
 from instagrapi import Client, exceptions
-from datetime import datetime, time
+from datetime import datetime
+import time
 import pytz
 import logging
 import puzzle_gen

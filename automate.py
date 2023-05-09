@@ -4,11 +4,12 @@
 ########################################################################################################################
 import csv
 from instagrapi import Client, exceptions
-import time
+from datetime import datetime, time
+import pytz
 import logging
 import puzzle_gen
 
-DELAY = 1800  # Seconds between posts
+DELAY = 3601  # Seconds between posts
 proxy1 = "http://lvzgfwlq:nu7g7fkk78hi@2.56.119.93:5074"
 proxy2 = "http://lvzgfwlq:nu7g7fkk78hi@185.199.229.156:7492"
 curr_proxy = proxy1
@@ -19,8 +20,9 @@ cl.set_proxy(curr_proxy)
 USERNAME = "chess.enthusiasts"
 PASSWORD = ""
 CURR_SESSION = "session.json"
+POST_TIMES = ['16', '18', '20', '22', '24', '2', '4', '6', '8', '10', '12', '14']
 
-no_login = False  # For testing purposes, skip the login and upload process
+no_login = True  # For testing purposes, skip the login and upload process
 exit_loop = False  # For testing purposes, run once rather than continuously
 
 HASHTAGS = "#Chess #ChessGame #ChessBoard #ChessPlayer #ChessMaster #ChessTournament #ChessPost #ChessMemes " \
@@ -91,18 +93,41 @@ if not no_login:
 ####################################################################################################################
 puzzle_gen.load_puzzles()
 while True:
+
+    # First, make sure that we are allowed to post during this hour.
+    current_time = datetime.now()
+    current_time_zone = current_time.astimezone(pytz.timezone('America/New_York'))
+    formatted_time = current_time_zone.strftime('%Y-%m-%d %H:%M:%S %Z%z')
+    clock_time = formatted_time.split(" ")[1].split(":")  # [Hour, Minutes, Seconds]
+    hour = clock_time[0]  # The current hour as a string
+    can_post = False
+    for t in POST_TIMES:
+        if hour == t:
+            can_post = True
+    if not can_post:
+        time.sleep(DELAY)  # Check again in an hour.
+        continue
+
     puzzle_gen.generate_slides()
     queued_puzzle = puzzle_gen.puzzle
 
-    caption = 'White to play '
+    # Generating caption
+    caption = 'White to play'
     if 'w' in queued_puzzle[1]:  # Lichess starts the puzzle a move early.
-        caption = 'Black to play '
+        caption = 'Black to play'
     theme = queued_puzzle[7]
     if 'mate' in theme:
-        caption += 'and checkmate their opponent!\n'
+        puzzle_theme = queued_puzzle[7]
+        mateInX = puzzle_theme.find("mateIn") + 6  # Sting index to the number of moves
+        caption += ", checkmate in " + str(puzzle_theme[mateInX]) + " moves!"
     else:
-        caption += 'and win!\n'
-    caption += '\n' + HASHTAGS
+        caption += ' and win!'
+    if int(queued_puzzle[3]) > 2600:
+        caption += ' If you can solve this, you are a master.'
+    elif int(queued_puzzle[3]) > 2550:
+        caption += ' This is a difficult one.'
+    caption += '\nToo tough for you? Swipe for the solution.\nFollow us for daily puzzles!\n\n' + HASHTAGS
+    print(caption)
 
     num_moves = len(queued_puzzle[2].split(" "))  # Number of moves in the puzzle
     slides = []
@@ -114,11 +139,32 @@ while True:
         try:
             cl.album_upload(slides, caption)
             print("Puzzle uploaded to instagram")
+            puzzle_gen.puzzle_index += 1
+
             # Append the puzzle ID we just posted into the repeats list
             with open('repeats.csv', mode="a", newline='') as file:
                 writer = csv.writer(file)
                 writer.writerow(puzzle_gen.puzzle)
-            puzzle_gen.puzzle_index += 1
+
+            # Once we've reached the end of the puzzles database, just restart and clear repeats.csv
+            if puzzle_gen.puzzle_index == puzzle_gen.PUZZLES_LEN:
+                puzzle_gen.puzzle_index = 0
+                f = open('repeats.csv', mode="w+")
+                f.close()
+                puzzle_gen.repeats.clear()
+
+            # Increment the theme index and piece index so the next post is different
+            with open('Themes/theme_index.txt', mode="r") as file:
+                theme_index = (int(file.read()) + 1) % len(puzzle_gen.themes)
+            with open('Themes/theme_index.txt', mode="w") as file:
+                file.write(str(theme_index))
+
+            # Only increment the piece index once per theme cycle
+            if theme_index == 0:
+                with open('Pieces/piece_index.txt', mode="r") as file:
+                    piece_index = (int(file.read()) + 1) % len(puzzle_gen.piece_sets)
+                with open('Pieces/piece_index.txt', mode="w") as file:
+                    file.write(str(piece_index))
 
         except Exception as e:
             print("Failed to upload: ", e)
@@ -130,19 +176,5 @@ while True:
                 switch_proxy()
                 insta_log()
 
-    # Increment the theme index and piece index so the next post is different
-    with open('Themes/theme_index.txt', mode="r") as file:
-        theme_index = (int(file.read()) + 1) % len(puzzle_gen.themes)
-    with open('Themes/theme_index.txt', mode="w") as file:
-        file.write(str(theme_index))
-    # Only increment the piece index once per theme cycle
-    if theme_index == 0:
-        with open('Pieces/piece_index.txt', mode="r") as file:
-            piece_index = (int(file.read()) + 1) % len(puzzle_gen.piece_sets)
-        with open('Pieces/piece_index.txt', mode="w") as file:
-            file.write(str(piece_index))
-
     if exit_loop:
         break
-
-    time.sleep(DELAY)

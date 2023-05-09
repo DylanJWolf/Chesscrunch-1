@@ -4,10 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf3068dc-a0ad-4024-bbc8-d796dfd421d2" name="Changes" comment="General readability improvements&#10;Will now only ask for password once">
+    <list default="true" id="bf3068dc-a0ad-4024-bbc8-d796dfd421d2" name="Changes" comment="Fixed password bug">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pieces/piece_index.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Pieces/piece_index.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/slide0.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/slide1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/slide2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/slide3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/slide4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/slide5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/slide6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/slide7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/slide8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/slide9.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/automate.py" beforeDir="false" afterPath="$PROJECT_DIR$/automate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/puzzle_gen.py" beforeDir="false" afterPath="$PROJECT_DIR$/puzzle_gen.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/puzzles_database.csv" beforeDir="false" afterPath="$PROJECT_DIR$/puzzles_database.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repeats.csv" beforeDir="false" afterPath="$PROJECT_DIR$/repeats.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +170,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683499222553</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Fixed password bug">
+      <created>1683499939773</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1683499939773</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -186,6 +207,7 @@
     <MESSAGE value="Implemented proxies and error handling to hopefully keep the script running for longer." />
     <MESSAGE value="Added themes!" />
     <MESSAGE value="General readability improvements&#10;Will now only ask for password once" />
-    <option name="LAST_COMMIT_MESSAGE" value="General readability improvements&#10;Will now only ask for password once" />
+    <MESSAGE value="Fixed password bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed password bug" />
   </component>
 </project>

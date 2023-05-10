@@ -10,36 +10,17 @@ import pytz
 import logging
 import puzzle_gen
 
-DELAY = 3601  # Seconds between posts
-proxy1 = "http://lvzgfwlq:nu7g7fkk78hi@2.56.119.93:5074"
-proxy2 = "http://lvzgfwlq:nu7g7fkk78hi@185.199.229.156:7492"
-curr_proxy = proxy1
-cl = Client()
-cl.delay_range = [1, 3]
-cl.set_proxy(curr_proxy)
-
+proxy = "http://lvzgfwlq:nu7g7fkk78hi@45.155.68.129:8133"
 USERNAME = "chess.enthusiasts"
 PASSWORD = ""
 CURR_SESSION = "session.json"
-POST_TIMES = ['16', '18', '20', '22', '24', '2', '4', '6', '8', '10', '12', '14']
-
-no_login = False  # For testing purposes, skip the login and upload process
-exit_loop = False  # For testing purposes, run once rather than continuously
+cl = Client()
+cl.set_proxy(proxy)
+cl.delay_range = [1, 3]
+POST_TIMES = ['8', '12', '16']
 
 HASHTAGS = "#Chess #ChessGame #ChessBoard #ChessPlayer #ChessMaster #ChessTournament #ChessPost #ChessMemes " \
            "#Grandmaster #ChessLife #PlayingChess #BoardGames #Puzzle #ChessTactics #ChessPuzzle #ChessPuzzles"
-
-
-# Swap proxies to evade IP bans
-def switch_proxy():
-    global curr_proxy
-    if curr_proxy == proxy1:
-        curr_proxy = proxy2
-        cl.set_proxy(proxy2)
-    else:
-        curr_proxy = proxy1
-        cl.set_proxy(proxy1)
-    print("Proxy switched")
 
 
 ########################################################################################################################
@@ -86,56 +67,52 @@ def insta_log():
     print("Login complete.")
 
 
-if not no_login:
-    insta_log()
-
 ####################################################################################################################
 # Posting Puzzles
 ####################################################################################################################
-puzzle_gen.load_puzzles()
-while True:
+def run_bot():
+    insta_log()
+    puzzle_gen.load_puzzles()
+    while True:
+        # First, make sure that we are allowed to post during this hour.
+        current_time = datetime.now()
+        current_time_zone = current_time.astimezone(pytz.timezone('America/New_York'))
+        formatted_time = current_time_zone.strftime('%Y-%m-%d %H:%M:%S %Z%z')
+        clock_time = formatted_time.split(" ")[1].split(":")  # [Hour, Minutes, Seconds]
+        hour = clock_time[0]  # The current hour as a string
+        can_post = False
+        for t in POST_TIMES:
+            if hour == t:
+                can_post = True
+        if not can_post:
+            continue  # Skip posting until it is time
 
-    # First, make sure that we are allowed to post during this hour.
-    current_time = datetime.now()
-    current_time_zone = current_time.astimezone(pytz.timezone('America/New_York'))
-    formatted_time = current_time_zone.strftime('%Y-%m-%d %H:%M:%S %Z%z')
-    clock_time = formatted_time.split(" ")[1].split(":")  # [Hour, Minutes, Seconds]
-    hour = clock_time[0]  # The current hour as a string
-    can_post = False
-    for t in POST_TIMES:
-        if hour == t:
-            can_post = True
-    if not can_post:
-        continue  # Skip posting until it is time
+        puzzle_gen.generate_slides()
+        queued_puzzle = puzzle_gen.puzzle
 
-    puzzle_gen.generate_slides()
-    queued_puzzle = puzzle_gen.puzzle
+        # Generating caption
+        caption = 'White to play'
+        if 'w' in queued_puzzle[1]:  # Lichess starts the puzzle a move early.
+            caption = 'Black to play'
+        theme = queued_puzzle[7]
+        if 'mate' in theme:
+            puzzle_theme = queued_puzzle[7]
+            mateInX = puzzle_theme.find("mateIn") + 6  # Sting index to the number of moves
+            caption += ", checkmate in " + str(puzzle_theme[mateInX]) + " moves!"
+        else:
+            caption += ' and win!'
+        if int(queued_puzzle[3]) > 2600:
+            caption += ' If you can solve this, you are a master.'
+        elif int(queued_puzzle[3]) > 2550:
+            caption += ' This is a difficult one.'
+        caption += '\nToo tough for you? Swipe for the solution.\nFollow us for daily puzzles!\n\n' + HASHTAGS
 
-    # Generating caption
-    caption = 'White to play'
-    if 'w' in queued_puzzle[1]:  # Lichess starts the puzzle a move early.
-        caption = 'Black to play'
-    theme = queued_puzzle[7]
-    if 'mate' in theme:
-        puzzle_theme = queued_puzzle[7]
-        mateInX = puzzle_theme.find("mateIn") + 6  # Sting index to the number of moves
-        caption += ", checkmate in " + str(puzzle_theme[mateInX]) + " moves!"
-    else:
-        caption += ' and win!'
-    if int(queued_puzzle[3]) > 2600:
-        caption += ' If you can solve this, you are a master.'
-    elif int(queued_puzzle[3]) > 2550:
-        caption += ' This is a difficult one.'
-    caption += '\nToo tough for you? Swipe for the solution.\nFollow us for daily puzzles!\n\n' + HASHTAGS
-    print(caption)
+        num_moves = len(queued_puzzle[2].split(" "))  # Number of moves in the puzzle
+        slides = []
+        # Slides will always have 10 jpgs (0 - 9). Only the updated IMGs get uploaded. The rest will contain garbage
+        for f in range(0, num_moves):
+            slides.append('Slides/Slide' + str(f) + '.jpg')
 
-    num_moves = len(queued_puzzle[2].split(" "))  # Number of moves in the puzzle
-    slides = []
-    # Slides will always have 10 jpgs (0 - 9). Only the updated IMGs get uploaded. The rest will contain garbage
-    for f in range(0, num_moves):
-        slides.append('Slides/Slide' + str(f) + '.jpg')
-
-    if not no_login:
         try:
             cl.album_upload(slides, caption)
             print("Puzzle uploaded to instagram")
@@ -169,14 +146,13 @@ while True:
         except Exception as e:
             print("Failed to upload: ", e)
             if "Please wait a few minutes" in str(e):
-                print("Instagram requests we wait a few minutes. Switching proxy and will try again next cycle")
-                switch_proxy()
+                print("Instagram requests we wait a few minutes. Will try again tomorrow :(")
+                time.sleep(86400)  # Wait one day
+                continue
             else:
-                print("Instagram terminated our session. Switching proxy and Relogging...")
-                switch_proxy()
+                print("Instagram terminated our session. Will try again tomorrow :(")
                 insta_log()
+                time.sleep(86400)
+                continue
 
-        time.sleep(DELAY)
-
-    if exit_loop:
-        break
+        time.sleep(3600)  # Check again in an hour

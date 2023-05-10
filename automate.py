@@ -23,7 +23,7 @@ PASSWORD = ""
 CURR_SESSION = "session.json"
 POST_TIMES = ['16', '18', '20', '22', '24', '2', '4', '6', '8', '10', '12', '14']
 
-no_login = True  # For testing purposes, skip the login and upload process
+no_login = False  # For testing purposes, skip the login and upload process
 exit_loop = False  # For testing purposes, run once rather than continuously
 
 HASHTAGS = "#Chess #ChessGame #ChessBoard #ChessPlayer #ChessMaster #ChessTournament #ChessPost #ChessMemes " \

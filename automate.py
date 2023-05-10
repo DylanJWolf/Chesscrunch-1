@@ -106,8 +106,7 @@ while True:
         if hour == t:
             can_post = True
     if not can_post:
-        time.sleep(DELAY)  # Check again in an hour.
-        continue
+        continue  # Skip posting until it is time
 
     puzzle_gen.generate_slides()
     queued_puzzle = puzzle_gen.puzzle
@@ -176,6 +175,8 @@ while True:
                 print("Instagram terminated our session. Switching proxy and Relogging...")
                 switch_proxy()
                 insta_log()
+
+        time.sleep(DELAY)
 
     if exit_loop:
         break

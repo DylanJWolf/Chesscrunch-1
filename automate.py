@@ -133,7 +133,7 @@ while True:
     slides = []
     # Slides will always have 10 jpgs (0 - 9). Only the updated IMGs get uploaded. The rest will contain garbage
     for f in range(0, num_moves):
-        slides.append('Slides/slide' + str(f) + '.jpg')
+        slides.append('Slides/Slide' + str(f) + '.jpg')
 
     if not no_login:
         try:

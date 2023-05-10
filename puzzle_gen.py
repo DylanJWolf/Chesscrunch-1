@@ -114,5 +114,5 @@ def generate_slides():
                 cur_x += int(char)
 
         board_img = board_img.convert('RGB')
-        img_path = 'Slides/slide' + str(m) + ".jpg"
+        img_path = 'Slides/Slide' + str(m) + ".jpg"
         board_img.save(img_path)

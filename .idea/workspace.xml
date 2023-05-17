@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf3068dc-a0ad-4024-bbc8-d796dfd421d2" name="Changes" comment="Reformatted code for web app support.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Slides/Slide0.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/Slide0.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Slides/Slide1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/Slide1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Slides/Slide2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/Slide2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Slides/Slide3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/Slide3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Slides/Slide4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/Slide4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Slides/Slide5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/Slide5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Slides/Slide6.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/Slide6.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Slides/Slide7.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/Slide7.jpg" afterDir="false" />
+    <list default="true" id="bf3068dc-a0ad-4024-bbc8-d796dfd421d2" name="Changes" comment="Honestly just wanted to make sure everything is up to date">
       <change beforePath="$PROJECT_DIR$/automate.py" beforeDir="false" afterPath="$PROJECT_DIR$/automate.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -212,7 +203,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683743996041</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Honestly just wanted to make sure everything is up to date">
+      <created>1684284791559</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1684284791559</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -248,6 +246,7 @@
     <MESSAGE value="Added slide.jpg's, cleared repeats.csv" />
     <MESSAGE value="Added slide.jpg's, cleared repeats.csv???" />
     <MESSAGE value="Reformatted code for web app support." />
-    <option name="LAST_COMMIT_MESSAGE" value="Reformatted code for web app support." />
+    <MESSAGE value="Honestly just wanted to make sure everything is up to date" />
+    <option name="LAST_COMMIT_MESSAGE" value="Honestly just wanted to make sure everything is up to date" />
   </component>
 </project>

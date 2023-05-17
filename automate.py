@@ -9,13 +9,20 @@ import time
 import pytz
 import logging
 import puzzle_gen
+import argparse
 
-USERNAME = "chesscrunch"
-PASSWORD = "64Chessify!"
+# Create the argument parser
+parser = argparse.ArgumentParser(description='Description of your script')
+parser.add_argument('-u', '--username', type=str, help='Username')
+parser.add_argument('-p', '--password', type=str, help='Password')
+args = parser.parse_args()
+
+USERNAME = args.username
+PASSWORD = args.password
 CURR_SESSION = "session.json"
 cl = Client()
 cl.delay_range = [1, 3]
-POST_TIMES = ['8', '09', '12', '16']
+POST_TIMES = ['08', '12', '16']
 
 HASHTAGS = "#Chess #ChessGame #ChessBoard #ChessPlayer #ChessMaster #ChessTournament #ChessPost #ChessMemes " \
            "#Grandmaster #ChessLife #PlayingChess #BoardGames #Puzzle #ChessTactics #ChessPuzzle #ChessPuzzles"

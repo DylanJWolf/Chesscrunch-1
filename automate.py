@@ -10,14 +10,12 @@ import pytz
 import logging
 import puzzle_gen
 
-proxy = "http://lvzgfwlq:nu7g7fkk78hi@45.155.68.129:8133"
-USERNAME = "chess.enthusiasts"
-PASSWORD = ""
+USERNAME = "chesscrunch"
+PASSWORD = "64Chessify!"
 CURR_SESSION = "session.json"
 cl = Client()
-cl.set_proxy(proxy)
 cl.delay_range = [1, 3]
-POST_TIMES = ['8', '12', '16']
+POST_TIMES = ['8', '09', '12', '16']
 
 HASHTAGS = "#Chess #ChessGame #ChessBoard #ChessPlayer #ChessMaster #ChessTournament #ChessPost #ChessMemes " \
            "#Grandmaster #ChessLife #PlayingChess #BoardGames #Puzzle #ChessTactics #ChessPuzzle #ChessPuzzles"
@@ -28,8 +26,6 @@ HASHTAGS = "#Chess #ChessGame #ChessBoard #ChessPlayer #ChessMaster #ChessTourna
 ########################################################################################################################
 def insta_log():
     global PASSWORD
-    if PASSWORD == "":
-        PASSWORD = input("Enter Password: ")
     logger = logging.getLogger()
     print("Logging into instagram...")
     session = cl.load_settings(CURR_SESSION)
@@ -156,3 +152,6 @@ def run_bot():
                 continue
 
         time.sleep(3600)  # Check again in an hour
+
+
+run_bot()

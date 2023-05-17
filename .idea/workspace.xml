@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf3068dc-a0ad-4024-bbc8-d796dfd421d2" name="Changes" comment="Added slide.jpg's, cleared repeats.csv???">
-      <change afterPath="$PROJECT_DIR$/automate_tester.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="bf3068dc-a0ad-4024-bbc8-d796dfd421d2" name="Changes" comment="Reformatted code for web app support.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pieces/piece_index.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Pieces/piece_index.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Slides/Slide0.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/Slide0.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Slides/Slide1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/Slide1.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Slides/Slide2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/Slide2.jpg" afterDir="false" />
@@ -208,7 +205,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683677734283</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Reformatted code for web app support.">
+      <created>1683743996040</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1683743996041</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -243,6 +247,7 @@
     <MESSAGE value="Added &quot;Scheduling&quot; capability.&#10;Puzzles will now repeat after using up the database." />
     <MESSAGE value="Added slide.jpg's, cleared repeats.csv" />
     <MESSAGE value="Added slide.jpg's, cleared repeats.csv???" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added slide.jpg's, cleared repeats.csv???" />
+    <MESSAGE value="Reformatted code for web app support." />
+    <option name="LAST_COMMIT_MESSAGE" value="Reformatted code for web app support." />
   </component>
 </project>

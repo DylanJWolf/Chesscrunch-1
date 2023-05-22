@@ -4,8 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf3068dc-a0ad-4024-bbc8-d796dfd421d2" name="Changes" comment="Honestly just wanted to make sure everything is up to date">
+    <list default="true" id="bf3068dc-a0ad-4024-bbc8-d796dfd421d2" name="Changes" comment="Added arguments for username and password.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/Slide0.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/Slide0.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/Slide1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/Slide1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/Slide2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/Slide2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/Slide3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/Slide3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/Slide4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/Slide4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Slides/Slide5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Slides/Slide5.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Themes/theme_index.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Themes/theme_index.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/automate.py" beforeDir="false" afterPath="$PROJECT_DIR$/automate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repeats.csv" beforeDir="false" afterPath="$PROJECT_DIR$/repeats.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,13 +37,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Dev/Chesscrunch",
+    "settings.editor.selected.configurable": "advanced.settings"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Dev\Chesscrunch" />
@@ -210,7 +220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684284791559</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Added arguments for username and password.">
+      <created>1684285265753</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1684285265753</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -247,6 +264,7 @@
     <MESSAGE value="Added slide.jpg's, cleared repeats.csv???" />
     <MESSAGE value="Reformatted code for web app support." />
     <MESSAGE value="Honestly just wanted to make sure everything is up to date" />
-    <option name="LAST_COMMIT_MESSAGE" value="Honestly just wanted to make sure everything is up to date" />
+    <MESSAGE value="Added arguments for username and password." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added arguments for username and password." />
   </component>
 </project>

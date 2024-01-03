@@ -1,0 +1,1 @@
+The purpose of this project was to automatically generate chess puzzles and upload them to Instagram. While the puzzle generation works wonderfully, Instagram's bot detection is tough to get around. Project is on hold for now until I come up with something clever.
